@@ -1,16 +1,22 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+onceki = 0.0
+aralik_toplam = 0.0
+say = 0
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def artik_yil_mi(yil):
+    global say, aralik_toplam, onceki, simdiki_fark, ortalama
+    if yil % 4 == 0 and (yil % 100 != 0 or yil % 400 == 0):
+        aralik_toplam += abs(onceki - yil)
+        onceki = yil
+        say += 1
+        return True
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    else:
+        return False
+
+
+for yili in range(1, 2100):
+    if artik_yil_mi(yili):
+        print(yili)
+
+print("Yıl sayısı: " + str(say) + " ortalama artık yıl aralığı:" + str(round(aralik_toplam / say, 2)) + " ")
